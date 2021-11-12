@@ -31,13 +31,13 @@ spec:
                 secretKeyRef:
                   name: k8s-sample-app-secrets
                   key: secret_key_base
-            - name: MYSQL_HOST
-              value: k8s-sample-app-mysql
-            - name: MYSQL_PW
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-pass
-                  key: password
+            # - name: MYSQL_HOST
+            #   value: k8s-sample-app-mysql
+            # - name: MYSQL_PW
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: mysql-pass
+            #       key: password
       containers:
         - name: k8s-sample-app-web
           image: rperry2174/ruby_rails_docker
