@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: traefik-ingress-controller
@@ -7,6 +7,9 @@ metadata:
 spec:
   replicas: 5
   revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      k8s-app: traefik-ingress-lb
   template:
     metadata:
       labels:
