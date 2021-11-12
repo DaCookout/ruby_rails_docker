@@ -17,25 +17,25 @@ spec:
   template:
     metadata:
       labels:
-        name: k8s-sample-app-web
+        k8s-app: k8s-sample-app-web
     spec:
       imagePullSecrets:
       - name: dockerhub-credentials
-      initContainers:
-        - name: k8s-sample-app-web-migrate
-          image: rperry2174/ruby_rails_docker
-          args: ["bundle", "exec", "rake", "db:create", "db:migrate", "db:seed"]
-          envFrom: &envfrom1
-            - configMapRef:
-                name: k8s-sample-app-config
-          env: &env1
-            - name: SECRET_KEY_BASE
-              valueFrom:
-                secretKeyRef:
-                  name: k8s-sample-app-secrets
-                  key: secret_key_base
-            # - name: MYSQL_HOST
-            #   value: k8s-sample-app-mysql
+      # initContainers:
+      #   - name: k8s-sample-app-web-migrate
+      #     image: rperry2174/ruby_rails_docker
+      #     args: ["bundle", "exec", "rake", "db:create", "db:migrate", "db:seed"]
+      #     envFrom: &envfrom1
+      #       - configMapRef:
+      #           name: k8s-sample-app-config
+        # env: &env1
+            # - name: SECRET_KEY_BASE
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: k8s-sample-app-secrets
+            #       key: secret_key_base
+          # - name: ABALONE_DATABASE_HOSTNAME
+          #   value: postgresql
             # - name: MYSQL_PW
             #   valueFrom:
             #     secretKeyRef:
@@ -44,24 +44,49 @@ spec:
       containers:
         - name: k8s-sample-app-web
           image: rperry2174/ruby_rails_docker
-          args: ["bundle", "exec", "rails", "server", "-p", "3000"]
+          args: ["bundle", "exec", "rspec"]
           resources:
             requests:
               cpu: 200m
               memory: 200Mi
-          ports:
-            - containerPort: 3000
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 3000
-            initialDelaySeconds: 5
-            timeoutSeconds: 1
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 3000
-            initialDelaySeconds: 5
-            timeoutSeconds: 1
-          envFrom: *envfrom1
-          env: *env1
+          env:
+            - name: ABALONE_DATABASE_HOSTNAME
+              value: postgresql
+          # ports:
+          #   - containerPort: 3000
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 3000
+          #   initialDelaySeconds: 5
+          #   timeoutSeconds: 1
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 3000
+          #   initialDelaySeconds: 5
+          #   timeoutSeconds: 1
+          # envFrom: *envfrom1
+      # containers:
+      #   - name: k8s-sample-app-web
+      #     image: rperry2174/ruby_rails_docker
+      #     args: ["bundle", "exec", "rails", "server", "-p", "3000"]
+      #     resources:
+      #       requests:
+      #         cpu: 200m
+      #         memory: 200Mi
+      #     ports:
+      #       - containerPort: 3000
+      #     livenessProbe:
+      #       httpGet:
+      #         path: /
+      #         port: 3000
+      #       initialDelaySeconds: 5
+      #       timeoutSeconds: 1
+      #     readinessProbe:
+      #       httpGet:
+      #         path: /
+      #         port: 3000
+      #       initialDelaySeconds: 5
+      #       timeoutSeconds: 1
+      #     envFrom: *envfrom1
