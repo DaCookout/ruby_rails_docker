@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-sample-app-web
+  name: k8s-sample-app-rspec
   labels:
-    k8s-app: k8s-sample-app-web
+    k8s-app: k8s-sample-app-rspec
 spec:
   replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      k8s-app: k8s-sample-app-web
+      k8s-app: k8s-sample-app-rspec
   strategy:
     type: RollingUpdate # default value, but explicitly set for demo
     rollingUpdate:
@@ -17,14 +17,14 @@ spec:
   template:
     metadata:
       labels:
-        k8s-app: k8s-sample-app-web
+        k8s-app: k8s-sample-app-rspec
     spec:
       imagePullSecrets:
       - name: dockerhub-credentials
-      initContainers:
-        - name: k8s-sample-app-web-migrate
-          image: rperry2174/ruby_rails_docker
-          args: ["bundle", "exec", "rake", "db:create", "db:migrate", "db:seed"]
+      # initContainers:
+      #   - name: k8s-sample-app-rspec-migrate
+      #     image: rperry2174/ruby_rails_docker
+      #     args: ["bundle", "exec", "rake", "db:create", "db:migrate", "db:seed"]
           # envFrom: &envfrom1
           #   - configMapRef:
           #       name: k8s-sample-app-config
@@ -42,9 +42,9 @@ spec:
             #       name: mysql-pass
             #       key: password
       containers:
-        - name: k8s-sample-app-web
+        - name: k8s-sample-app-rspec
           image: rperry2174/ruby_rails_docker
-          args: ["bundle", "exec", "rails", "s"]
+          args: ["bundle", "exec", "rspec"]
           resources:
             requests:
               cpu: 200m
@@ -68,7 +68,7 @@ spec:
           #   timeoutSeconds: 1
           # envFrom: *envfrom1
       # containers:
-      #   - name: k8s-sample-app-web
+      #   - name: k8s-sample-app-rspec
       #     image: rperry2174/ruby_rails_docker
       #     args: ["bundle", "exec", "rails", "server", "-p", "3000"]
           # resources:
