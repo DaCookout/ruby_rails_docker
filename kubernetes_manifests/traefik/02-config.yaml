@@ -20,7 +20,6 @@ data:
     email = "hello@example.com"
     storageFile = "/acme/acme.json"
     entryPoint = "https"
-    caServer = "https://acme-staging.api.letsencrypt.org/directory"
     onDemand = true
     onHostRule = true
     [acme.httpChallenge]
