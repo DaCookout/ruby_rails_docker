@@ -1,12 +1,15 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: k8s-sample-app-web
   labels:
-    name: k8s-sample-app-web
+    k8s-app: k8s-sample-app-web
 spec:
   replicas: 1
   revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      k8s-app: k8s-sample-app-web
   strategy:
     type: RollingUpdate # default value, but explicitly set for demo
     rollingUpdate:
