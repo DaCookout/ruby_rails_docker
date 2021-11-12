@@ -20,8 +20,8 @@ spec:
       - name: dockerhub-credentials
       initContainers:
         - name: k8s-sample-app-web-migrate
-          image: <your_username>/k8s-sample-app:v0.1
-          args: ["bundle", "exec", "rake", "db:create", "db:migrate"]
+          image: rperry2174/ruby_rails_docker
+          args: ["bundle", "exec", "rake", "db:create", "db:migrate", "db:seed"]
           envFrom: &envfrom1
             - configMapRef:
                 name: k8s-sample-app-config
@@ -40,7 +40,7 @@ spec:
                   key: password
       containers:
         - name: k8s-sample-app-web
-          image: <your_username>/k8s-sample-app:v0.1
+          image: rperry2174/ruby_rails_docker
           args: ["bundle", "exec", "rails", "server", "-p", "3000"]
           resources:
             requests:
