@@ -1,0 +1,26 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.container_with_scroll{
+  overflow-x: scroll;
+}
+.column.is-thinner{
+  padding: .15rem .75rem;
+}
+
+.has-text-success{
+  color: hsl(141, 53%, 53%);
+}
+
+.has-text-danger{
+  color: hsl(348, 100%, 61%);
+}
+
+.trash-ico{
+  img {
+    width: 1.125rem;
+    margin: 0 auto;
+  }
+}

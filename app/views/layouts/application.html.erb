@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <title>Abalone Analytics</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <%= stylesheet_pack_tag   'styles', media: 'all' %>
+    <%= stylesheet_link_tag   'application', media: 'all' %>
+  </head>
+
+  <body>
+    <nav class="flex navbar is-light" role="navigation" aria-label="main navigation"  data-controller="navbar">
+      <div class="pl-2 navbar-container logo">
+        <%= link_to(root_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 items-center px-3 py-2') do %>
+          <%= image_tag 'abalone_logo.png', alt: "Abalone Analytics - Homepage", class: 'h-12' %>
+          <span class="logo-text pl-2" tabindex=1>Abalone <br> Analytics</span>
+        <% end %>
+        <a id="nav-burger" role="button" data-target="nav-menu" class="block p-4 relative settings lg:hidden w-12" aria-label="menu" aria-expanded="false"  data-action="click->navbar#open">
+          <i class="fas fa-bars"></i>
+        </a>
+      </div>
+
+      <div id="nav-menu" class="bg-white lg:bg-transparent lg:flex flex-grow flex-shrink-0 lg:h-full hidden items-stretch pl-2 py-2 lg:p-0 lg:shadow-none shadow">
+        <div class="block lg:flex items-stretch justify-start mr-auto lg:h-full">
+          <% if current_user %>
+            <%= link_to 'Reports', reports.root_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-3 py-2 relative', tabindex: 2 %>
+            <div class="cursor-pointer dropdown-nav-item flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center relative">
+              <a class="flex items-center hover:bg-gray-300 px-3 py-2 lg:py-0 relative" tabindex=3>
+                Statistics
+                <span class="lg:p-2"><i class="fas fa-chevron-down"></i></span>
+              </a>
+              <div class="absolute bg-white block lg:border-t-2 border-gray-50 dropdown py-2 rounded shadow-md text-sm top-full w-44">
+                <%= link_to 'Facilities', facilities_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-3 py-2 relative', tabindex: 4 %>
+                <%= link_to 'Enclosures', enclosures_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-3 py-2 relative', tabindex: 5 %>
+                <%= link_to 'Animals', animals_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-3 py-2 relative', tabindex: 6 %>
+                <%= link_to 'Cohorts', cohorts_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-3 py-2 relativem', tabindex: 7 %>
+              </div>
+            </div>
+            <%= link_to 'Operations', operations_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-3 py-2 relative', tabindex: 8 %>
+            <%= link_to 'Measurements', measurements_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-3 py-2 relativem', tabindex: 9 %>
+            <div class="cursor-pointer dropdown-nav-item flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center relative">
+              <a class="flex items-center hover:bg-gray-300 px-3 py-2 lg:py-0 relative" tabindex=10>
+                Uploads
+                <span class="lg:p-2"><i class="fas fa-chevron-down"></i></span>
+              </a>
+              <div class="absolute bg-white block lg:border-t-2 border-gray-50 dropdown py-2 rounded shadow-md text-sm top-full w-44">
+                <%= link_to 'Data Import', new_measurement_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 11 %>
+                <%= link_to 'CSV Uploads', csv_index_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 12 %>
+                <%= link_to 'Files List', file_uploads_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 13 %>
+                <%= link_to 'Upload a file', new_file_upload_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 14 %>
+              </div>
+            </div>
+            <% if current_user.admin? %>
+              <div class="cursor-pointer dropdown-nav-item flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center relative">
+                <a class="flex items-center hover:bg-gray-300 px-3 py-2 lg:py-0 relative" tabindex=15>
+                  Admin
+                  <span class="lg:p-2"><i class="fas fa-chevron-down"></i></span>
+                </a>
+                <div class="absolute bg-white block lg:border-t-2 border-gray-50 dropdown py-2 rounded shadow-md text-sm top-full w-60">
+                  <%= link_to 'Measurement Types', measurement_types_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 16 %>
+                  <%= link_to 'Users', users_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 17 %>
+                  <%= link_to 'Exit types', exit_types_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 18 %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          
+        </div>
+
+        <div class="flex items-stretch justify-end ml-auto">
+          <div class="cursor-pointer flex flex-grow-0 flex-shrink-0 items-center px-3 py-2 relative">
+             <div class="cursor-pointer dropdown-nav-item flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center relative">
+                <a class="flex items-center hover:bg-gray-300 px-3 py-2 lg:py-0 relative" tabindex=19>
+                  User
+                  <span class="lg:p-2"><i class="fas fa-chevron-down"></i></span>
+                </a>
+                <div class="user-dropdown bg-white block lg:border-t-2 border-gray-50 dropdown py-2 rounded shadow-md text-sm top-full w-60">
+                  <% if user_signed_in? %>
+                    <%= link_to "Change password", edit_password_path(current_user), class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 20 %>
+                    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 21 %>
+                  <% else %>
+                    <%= link_to "Login", new_user_session_path, class: 'cursor-pointer flex flex-grow-0 flex-shrink-0 hover:bg-gray-300 items-center px-6 lg:pl-4 lg:pr-12 py-2', tabindex: 22 %>
+                  <% end %>
+                </div>
+              </div>  
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <% if notice %>
+      <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+        <p class="font-bold"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold"><%= alert %></strong>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application', 'tailwind' %>
+  </body>
+</html>

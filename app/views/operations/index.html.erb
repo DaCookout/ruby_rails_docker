@@ -1,0 +1,25 @@
+<section class="h-screen bg-background md:p-12 sm:w-100 p-0">
+  <div class="container mx-auto bg-white py-6 px-8 rounded-md shadow-sm">
+    <h1 class="text-title2">Operations</h1>
+    <table class="table-auto w-full border">
+      <thead>
+        <tr class="border">
+          <th class="text-sm text-caption-light font-medium px-4 py-2 uppercase" scope="col">Enclosure</th>
+          <th class="text-sm text-caption-light font-medium px-4 py-2 uppercase" scope="col">Cohort</th>
+          <th class="text-sm text-caption-light font-medium px-4 py-2 uppercase" scope="col">Action</th>
+          <th class="text-sm text-caption-light font-medium px-4 py-2 uppercase" scope="col">CSV Data Uploaded At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @operations.each do |operation| %>
+          <tr>
+            <td class="px-4 py-2" data-label="Name"><%= operation.enclosure.name %> </td>
+            <td class="px-4 py-2" data-label="Cohort"><%= operation.cohort&.name %> </td>
+            <td class="px-4 py-2" data-label="Action"><%= operation.action %></td>
+            <td class="px-4 py-2" data-label="CSV Data Uploaded At"><%= operation.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

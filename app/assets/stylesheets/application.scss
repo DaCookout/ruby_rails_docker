@@ -1,0 +1,202 @@
+/*
+*= require reports_kit/application
+*/
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "animals";
+@import "facilities";
+@import "file_uploads";
+@import "home";
+@import "sessions";
+@import "variables";
+@import "mixins";
+@import "pages/**/*";
+@import "reports_kit"; // Replaced by blazer reporting - 1/24/21
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+a{
+  color: $color-primary-dark !important;
+  background-color: none;
+  font-size: 15px;
+  text-decoration: none;
+  &:hover {
+    color: $color-primary !important;
+  }
+}
+
+.navbar-brand img {
+  padding-right: 0.5em;
+}
+
+.navbar {
+  height: 5rem;
+  background-color: #fff;
+  -webkit-box-shadow: -4px -1px 33px -5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: -4px -1px 33px -5px rgba(0, 0, 0, 0.25);
+  box-shadow: -4px -1px 33px -5px rgba(0, 0, 0, 0.25);
+  &-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  h1, .logo-text {
+    font-size: 21px;
+    color: #4a4a4a;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  @include tablet {
+    .navbar-brand {
+      display: flex;
+      width: 100%;
+    }
+    #nav-menu {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+    }
+  }
+  .logo {
+    min-width: 230px;
+  }
+  .dropdown-nav-item .dropdown {
+    display: none;
+  }
+  .dropdown-nav-item:hover .dropdown {
+    display: block;
+  }
+
+  @include tablet {
+    .dropdown-nav-item {
+      display: block;
+
+      a {
+        display: block;
+
+        span { //chevron down
+          float: right;
+        }
+      }
+
+      .dropdown {
+        display: block;
+        position: relative;
+      }
+    }
+  }
+}
+
+.user-dropdown {
+  position: absolute;
+  right: -2px;
+}
+
+.navbar.is-light {
+  background-color: #f5f5f5;
+  color: #363636;
+}
+
+.button-primary {
+  background: $color-primary-dark !important;
+  color: $color-light !important;
+  padding: 8px 16px !important;
+  font-weight: 500 !important;
+  border-radius: 6px;
+  &:hover {
+    text-decoration: none !important;
+    background: $color-primary !important;
+    
+  }
+}
+
+.button-outline-primary {
+  background: transparent !important;
+  color: $color-primary-dark !important;
+  padding: 4px 20px !important;
+  font-weight: 500 !important;
+  border: 1.5px solid $color-primary !important;
+  &:hover {
+    background: $color-primary-dark !important;
+    color: $color-light !important;
+    text-decoration: none !important;
+  }
+}
+
+.button-back {
+  color: #333;
+  padding: 0 11px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.button-danger {
+  color: white;
+  background-color: #eb0000;
+  padding: 0 11px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.input,
+.textarea {
+  box-shadow: unset;
+  border-radius: 2px;
+}
+
+.error {
+  color: red
+}
+
+.footer {
+  padding: 40px 30px;
+  display: flex;
+  justify-content: center;
+  background-color: $color-light;
+}
+@media screen and (max-width: 800px) {
+  table {
+    border: 0;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    padding: 20px;
+  }
+  
+  table tr {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    padding: 20px;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    padding: 20px;
+  }
+  
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 20px;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}

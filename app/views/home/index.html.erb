@@ -1,0 +1,40 @@
+<%= render :partial => 'hero' %>
+
+<% if current_user %>
+  <div class="flex flex-row p-3"></div>
+  <section class="block">
+    <h2 class="break-words font-semibold text-title2 text-center">
+      Your organization: <%= current_organization.name %>
+    </h2>
+  </section>
+  <div class="flex justify-content-center flex-wrap container">
+    <div class="dashboard-cards">
+      <p class="break-words font-normal text-title4">Total No. of Animals<br />
+        <span class="text-title2 text-center"><%= @animal_count %></span>
+      </p>
+      <button class="mt-5">
+        <%= link_to 'View All Animals', animals_path, class: 'white-btn' %>
+      </button>
+    </div>
+    <div class="dashboard-cards">
+      <p class="break-words font-normal text-title4">Number of Facilities<br />
+        <span class="text-title2 text-center"><%= @facility_count %></span>
+      </p>
+      <button class="mt-5">
+        <%= link_to 'View All Facilities', facilities_path, class: 'white-btn' %>
+      </button>
+    </div>
+    <div class="dashboard-cards">
+      <p class="break-words font-normal text-title4">Number of Cohorts<br />
+        <span class="text-title2 text-center"><%= @cohort_count %></span>
+      </p>
+      <button class="mt-5">
+        <%= link_to 'View All Cohorts', cohorts_path, class: 'white-btn' %>
+      </button>
+    </div>
+  </div>
+<% end %>
+<%= render :partial => 'bottom_content' %>
+<%= render :partial => 'footer' %>
+
+
