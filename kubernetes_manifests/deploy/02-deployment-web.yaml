@@ -25,6 +25,10 @@ spec:
         - name: k8s-sample-app-web-migrate
           image: rperry2174/ruby_rails_docker
           args: ["bundle", "exec", "rake", "db:create", "db:migrate", "db:seed"]
+
+          env:
+            - name: ABALONE_DATABASE_HOSTNAME
+              value: postgresql-web
           # envFrom: &envfrom1
           #   - configMapRef:
           #       name: k8s-sample-app-config
@@ -51,7 +55,7 @@ spec:
               memory: 200Mi
           env:
             - name: ABALONE_DATABASE_HOSTNAME
-              value: postgresql
+              value: postgresql-web
           # ports:
           #   - containerPort: 3000
           # livenessProbe:
