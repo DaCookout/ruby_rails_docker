@@ -1,3 +1,4 @@
+# rubocop:disable Style/ExplicitBlockArgument
 require "pyroscope"
 
 class ApplicationController < ActionController::Base
