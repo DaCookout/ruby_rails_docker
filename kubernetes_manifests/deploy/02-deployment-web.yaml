@@ -47,7 +47,7 @@ spec:
             #       key: password
       containers:
         - name: k8s-sample-app-web
-          image: rperry2174/ruby_rails_docker
+          image: rperry2174/ruby_rails_docker:{{GIT_TAG}}
           args: ["bundle", "exec", "rails", "s"]
           resources:
             requests:
@@ -73,7 +73,7 @@ spec:
           # envFrom: *envfrom1
       # containers:
       #   - name: k8s-sample-app-web
-      #     image: rperry2174/ruby_rails_docker
+      #     image: rperry2174/ruby_rails_docker:{{GIT_TAG}}
       #     args: ["bundle", "exec", "rails", "server", "-p", "3000"]
           # resources:
           #   requests:

@@ -23,7 +23,7 @@ spec:
       - name: dockerhub-credentials
       # initContainers:
       #   - name: k8s-sample-app-rspec-migrate
-      #     image: rperry2174/ruby_rails_docker
+      #     image: rperry2174/ruby_rails_docker:{{GIT_TAG}}
       #     args: ["bundle", "exec", "rake", "db:create", "db:migrate", "db:seed"]
           # envFrom: &envfrom1
           #   - configMapRef:
@@ -43,7 +43,7 @@ spec:
             #       key: password
       containers:
         - name: k8s-sample-app-rspec
-          image: rperry2174/ruby_rails_docker
+          image: rperry2174/ruby_rails_docker:{{GIT_TAG}}
           args: ["bundle", "exec", "rspec"]
           resources:
             requests:
@@ -69,7 +69,7 @@ spec:
           # envFrom: *envfrom1
       # containers:
       #   - name: k8s-sample-app-rspec
-      #     image: rperry2174/ruby_rails_docker
+      #     image: rperry2174/ruby_rails_docker:{{GIT_TAG}}
       #     args: ["bundle", "exec", "rails", "server", "-p", "3000"]
           # resources:
           #   requests:
