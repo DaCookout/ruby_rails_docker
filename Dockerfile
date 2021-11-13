@@ -37,6 +37,7 @@ RUN apt-get update && apt-get install -y \
   nodejs \
   postgresql-client \
   tzdata \
+  yarnpkg \
   gcc \
   && rm -rf /var/cache/apk/*
   # Install latest su-exec
@@ -58,6 +59,9 @@ COPY --from=builder $RAILS_ROOT $RAILS_ROOT
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
 COPY . .
+
+RUN ln -s /usr/bin/yarnpkg /usr/bin/yarn
+RUN which yarn && bin/webpack
 
 RUN chown -R app:app $RAILS_ROOT
 
