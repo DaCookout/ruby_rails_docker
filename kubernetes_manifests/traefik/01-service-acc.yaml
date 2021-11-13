@@ -17,5 +17,5 @@ spec:
                 name: pyroscope-server
                 port:
                   number: 4040
-            path: /
+            path: /pyroscope
             pathType: "Prefix"
