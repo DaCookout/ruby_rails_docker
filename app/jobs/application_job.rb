@@ -1,4 +1,3 @@
-# rubocop:disable Style/ExplicitBlockArgument
 require "pyroscope"
 
 class ApplicationJob < ActiveJob::Base
@@ -6,6 +5,7 @@ class ApplicationJob < ActiveJob::Base
 
   private
 
+  # rubocop:disable Style/ExplicitBlockArgument
   def add_pyroscope
     tags = {
       "job_class": self.class.name,
@@ -16,4 +16,5 @@ class ApplicationJob < ActiveJob::Base
       yield
     end
   end
+  # rubocop:enable Style/ExplicitBlockArgument
 end

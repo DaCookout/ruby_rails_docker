@@ -1,4 +1,3 @@
-# rubocop:disable Style/ExplicitBlockArgument
 require "pyroscope"
 
 class ApplicationController < ActionController::Base
@@ -42,6 +41,7 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # rubocop:disable Style/ExplicitBlockArgument
   def add_pyroscope
     tags = {
       "controller": controller_name,
@@ -54,4 +54,5 @@ class ApplicationController < ActionController::Base
       yield
     end
   end
+  # rubocop:enable Style/ExplicitBlockArgument
 end
