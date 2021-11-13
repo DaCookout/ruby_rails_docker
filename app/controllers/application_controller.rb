@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def add_pyroscope    
+  def add_pyroscope
     tags = {
       "controller": controller_name,
       "action": action_name,
@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
       "organization_id": current_user&.organization&.id || "none"
     }
 
-    Pyroscope.tag_wrapper(tags) do 
+    Pyroscope.tag_wrapper(tags) do
       yield
     end
   end
