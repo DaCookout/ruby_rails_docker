@@ -36,11 +36,11 @@ jobs:
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
       
-      - name: Update docker image in deployment web
-        run: 'sed -i .bak "s/{{GIT_TAG}}/${{ github.sha }}/g" "kubernetes_manifests/deploy/02-deployment-web.yaml"'
+      # - name: Update docker image in deployment web
+      #   run: 'sed -i .bak "s/{{GIT_TAG}}/${{ github.sha }}/g" "kubernetes_manifests/deploy/02-deployment-web.yaml"'
 
-      - name: Update docker image in tests
-        run: 'sed -i .bak "s/{{GIT_TAG}}/${{ github.sha }}/g" "kubernetes_manifests/deploy/03-tests.yaml"'
+      # - name: Update docker image in tests
+      #   run: 'sed -i .bak "s/{{GIT_TAG}}/${{ github.sha }}/g" "kubernetes_manifests/deploy/03-tests.yaml"'
 
       - name: Echo file for debugging
         run: 'cat "kubernetes_manifests/deploy/02-deployment-web.yaml"'
