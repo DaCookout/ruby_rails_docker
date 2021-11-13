@@ -68,5 +68,8 @@ RUN chown -R app:app $RAILS_ROOT
 EXPOSE 3000
 EXPOSE 4040
 
+ENV GIT_TAG={{GIT_TAG}}
+ENV IS_DOCKER="true"
+
 ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["abalone"]
