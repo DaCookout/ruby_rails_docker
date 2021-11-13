@@ -70,7 +70,7 @@ EXPOSE 4040
 
 ENV GIT_AUTHOR={{GIT_AUTHOR}}
 ENV GIT_TAG={{GIT_TAG}}
-ENV IS_DOCKER="true"
+ENV IS_DOCKER=true
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["abalone"]
