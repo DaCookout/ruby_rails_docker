@@ -31,7 +31,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/ruby_rails_docker:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/ruby_rails_docker:${{ github.sha }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
