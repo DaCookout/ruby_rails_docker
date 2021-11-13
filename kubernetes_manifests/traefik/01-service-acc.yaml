@@ -8,7 +8,7 @@ metadata:
   name: pyroscope-server-ingress
 spec:
   rules:
-    - host: pyroscope-server.37ad4147-4f75-4bcd-9ee2-75860594b742.k8s.civo.com
+    - host: 588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com
       http:
         paths:
           -
