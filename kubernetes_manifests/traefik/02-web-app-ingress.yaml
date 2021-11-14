@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  labels:
+    app: k8s-sample-app-web
+  name: k8s-sample-app-web-ingress
+spec:
+  rules:
+    - host: k8s-sample-app-web.588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com
+      http:
+        paths:
+          -
+            backend:
+              service:
+                name: k8s-sample-app-web
+                port:
+                  number: 3000
+            path: /
+            pathType: "Prefix"
