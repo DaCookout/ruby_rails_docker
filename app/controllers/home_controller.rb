@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   skip_before_action :authenticate_user!
   def index
     return unless current_user
+
     translate_yaml
 
     # Retrive current organization stats
