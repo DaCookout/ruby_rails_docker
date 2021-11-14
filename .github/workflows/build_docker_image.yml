@@ -99,6 +99,6 @@ jobs:
           message: |
             ### Congrats on the PR 🎉!
             * Review your staging app on [Civo](https://k8s-sample-app-web.3531cd4b-f81c-4135-9de8-c6c88f59b97e.k8s.civo.com) 
-            * View a diff of this apps performance and test performance using [Pyroscope](https://pyroscope-server.3531cd4b-f81c-4135-9de8-c6c88f59b97e.k8s.civo.com/)'
+            * View a diff of this apps performance and test performance using [Pyroscope](https://pyroscope-server.3531cd4b-f81c-4135-9de8-c6c88f59b97e.k8s.civo.com/)
             
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
