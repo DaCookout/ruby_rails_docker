@@ -46,8 +46,6 @@ class ApplicationController < ActionController::Base
     tags = {
       "controller": controller_name,
       "action": action_name,
-      "user_id": current_user&.id || "none",
-      "organization_id": current_user&.organization&.id || "none"
     }
 
     Pyroscope.tag_wrapper(tags) do

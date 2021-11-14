@@ -9,7 +9,6 @@ class ApplicationJob < ActiveJob::Base
   def add_pyroscope
     tags = {
       "job_class": self.class.name,
-      "job_id": job_id
     }
 
     Pyroscope.tag_wrapper(tags) do
