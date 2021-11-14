@@ -25,7 +25,7 @@ spec:
           -
             backend:
               service:
-                name: k8s-sample-app
+                name: k8s-sample-app-web
                 port:
                   number: 3000
             path: /

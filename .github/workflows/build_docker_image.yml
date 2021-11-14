@@ -1,8 +1,8 @@
 
 name: CI to Docker Hub
 on:
-  push:
-    branches: [main]
+  # push:
+  #   branches: [main]
   pull_request:
     branches: [main]
 jobs:
@@ -89,3 +89,11 @@ jobs:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
           args: apply -f ./kubernetes_manifests/traefik
+
+
+      - name: Comment on PR
+        uses: thollander/actions-comment-pull-request@v1
+        
+        with:
+          message: 'Congrats on the PR! View your staging app at https://588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com/ and go to https://pyroscope-server.588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com/ to see performance profiles for your application'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
