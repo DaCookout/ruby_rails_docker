@@ -8,7 +8,7 @@ metadata:
   name: k8s-sample-app-web-ingress
 spec:
   rules:
-    - host: k8s-sample-app-web.588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com
+    - host: k8s-sample-app-web.3531cd4b-f81c-4135-9de8-c6c88f59b97e.k8s.civo.com
       http:
         paths:
           -
