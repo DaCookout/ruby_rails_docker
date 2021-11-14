@@ -74,7 +74,7 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts.clear
-  
+
   # for local environment variables
   config.before_configuration do
     env_file = File.join(Rails.root, 'config', 'local_env.yml')
