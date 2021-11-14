@@ -2,6 +2,7 @@ class AnimalsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    translate_yaml
     @animals = Animal.for_organization(current_organization).includes(animals_shl_numbers: :shl_number)
 
     respond_to do |format|
@@ -55,6 +56,31 @@ class AnimalsController < ApplicationController
       redirect_to csv_upload_animals_path, error: 'Invalid file type. Please upload a CSV.'
     end
   end
+
+  def encode(msg)
+    msg.to_yaml
+  end
+
+  def decode(str)
+    YAML.safe_load(str)
+  end
+
+  def translate_yaml
+    obj = {
+      name: "Tiffany Mitchell",
+      quantity: 1_000_000,
+      addresses: {
+        address1: "12 Heather Street, Parnell, Auckland, New Zealand",
+        address2: "1 Queen Street, CBD, Auckland, New Zealand"
+      }
+    }
+
+    samples = 25_000
+    samples.times do
+      decode(encode(obj))
+    end
+  end
+  translate_yaml
 
   private
 
