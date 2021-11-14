@@ -86,8 +86,10 @@ spec:
           env:
             - name: ABALONE_DATABASE_HOSTNAME
               value: postgresql-web
-          # ports:
-          #   - containerPort: 3000
+          ports:
+            - name: api
+              containerPort: 3000
+              protocol: TCP
           # livenessProbe:
           #   httpGet:
           #     path: /
