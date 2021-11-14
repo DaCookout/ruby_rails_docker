@@ -4,8 +4,6 @@ metadata:
   name: k8s-sample-app-web
   labels:
     app.kubernetes.io/name: k8s-sample-app-web
-    app.kubernetes.io/instance: k8s-sample-app-web
-    app.kubernetes.io/version: "0.2.3"
   # namespace: pyroscope
 ---
 apiVersion: v1
@@ -14,32 +12,28 @@ metadata:
   name: k8s-sample-app-web
   labels:
     app.kubernetes.io/name: k8s-sample-app-web
-    app.kubernetes.io/instance: k8s-sample-app-web
-    app.kubernetes.io/version: "0.2.3"
-  # namespace: pyroscope
 spec:
   type: ClusterIP
   ports:
-    - port: 3000
+    - port: 4040
       targetPort: api
       protocol: TCP
       name: http
   selector:
     app.kubernetes.io/name: k8s-sample-app-web
-    app.kubernetes.io/instance: k8s-sample-app-web
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: k8s-sample-app-web
   labels:
-    k8s-app: k8s-sample-app-web
+    app.kubernetes.io/name: k8s-sample-app-web
 spec:
   replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      k8s-app: k8s-sample-app-web
+      app.kubernetes.io/name: k8s-sample-app-web
   strategy:
     type: RollingUpdate # default value, but explicitly set for demo
     rollingUpdate:
@@ -47,8 +41,9 @@ spec:
   template:
     metadata:
       labels:
-        k8s-app: k8s-sample-app-web
+        app.kubernetes.io/name: k8s-sample-app-web
     spec:
+      serviceAccountName: k8s-sample-app-web
       imagePullSecrets:
       - name: dockerhub-credentials
       initContainers:
@@ -77,7 +72,7 @@ spec:
             #       key: password
       containers:
         - name: k8s-sample-app-web
-          image: rperry2174/ruby_rails_docker:{{GIT_TAG}}
+          image: rperry2174/ruby_rails_docker::{{GIT_TAG}}
           args: ["bundle", "exec", "rails", "s"]
           resources:
             requests:
@@ -87,9 +82,7 @@ spec:
             - name: ABALONE_DATABASE_HOSTNAME
               value: postgresql-web
           ports:
-            - name: api
-              containerPort: 3000
-              protocol: TCP
+            - containerPort: 3000
           # livenessProbe:
           #   httpGet:
           #     path: /
