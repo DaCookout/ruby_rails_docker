@@ -74,6 +74,7 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts.clear
+  config.web_console.whiny_requests = false
 
   # for local environment variables
   config.before_configuration do

@@ -83,6 +83,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.hosts.clear
+  config.web_console.whiny_requests = false
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'

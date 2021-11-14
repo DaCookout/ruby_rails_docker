@@ -52,6 +52,7 @@ Rails.application.configure do
   config.active_support.disallowed_deprecation_warnings = []
 
   config.hosts.clear
+  config.web_console.whiny_requests = false
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
