@@ -8,7 +8,7 @@ metadata:
   name: pyroscope-server-ingress
 spec:
   rules:
-    - host: 588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com
+    - host: pyroscope-server.588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com
       http:
         paths:
           -
@@ -17,5 +17,16 @@ spec:
                 name: pyroscope-server
                 port:
                   number: 4040
-            path: /pyroscope
+            path: /
+            pathType: "Prefix"
+    - host: 588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com
+      http:
+        paths:
+          -
+            backend:
+              service:
+                name: k8s-sample-app
+                port:
+                  number: 3000
+            path: /
             pathType: "Prefix"
