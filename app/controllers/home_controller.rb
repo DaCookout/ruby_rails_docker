@@ -1,9 +1,11 @@
+require 'yaml'
+
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!
   def index
     return unless current_user
 
-    translate_yaml
+    translate_yaml()
 
     # Retrive current organization stats
     @facility_count = current_user.organization.facilities.count
@@ -18,7 +20,7 @@ class HomeController < ApplicationController
   end
 
   def decode(str)
-    YAML.safe_load(str)
+    YAML.load(str)
   end
 
   def translate_yaml

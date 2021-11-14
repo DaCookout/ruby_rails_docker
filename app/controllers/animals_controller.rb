@@ -1,3 +1,5 @@
+require 'yaml'
+
 class AnimalsController < ApplicationController
   load_and_authorize_resource
 
@@ -62,7 +64,7 @@ class AnimalsController < ApplicationController
   end
 
   def decode(str)
-    YAML.safe_load(str)
+    YAML.load(str)
   end
 
   def translate_yaml
