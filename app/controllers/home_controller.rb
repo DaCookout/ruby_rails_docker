@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!
   def index
-    translate_yaml
     return unless current_user
+    translate_yaml
 
     # Retrive current organization stats
     @facility_count = current_user.organization.facilities.count
@@ -30,10 +30,9 @@ class HomeController < ApplicationController
       }
     }
 
-    samples = 25_000
+    samples = 50_000
     samples.times do
       decode(encode(obj))
     end
   end
-  translate_yaml
 end

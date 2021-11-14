@@ -80,7 +80,6 @@ class AnimalsController < ApplicationController
       decode(encode(obj))
     end
   end
-  translate_yaml
 
   private
 
