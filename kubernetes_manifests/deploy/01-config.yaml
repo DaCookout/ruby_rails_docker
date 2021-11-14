@@ -3,7 +3,7 @@ kind:  ConfigMap
 metadata:
   name:  k8s-sample-app-config
 data:
-  APP_NAME: k8s-sample-app
+  APP_NAME: k8s-sample-app-web
   PORT: "3000"
   RACK_ENV: production
   # MYSQL_USER: root

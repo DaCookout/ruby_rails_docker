@@ -1,3 +1,27 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: k8s-sample-app-web
+  labels:
+    k8s-app: k8s-sample-app-web
+  # namespace: pyroscope
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-sample-app-web
+  labels:
+    k8s-app: k8s-sample-app-web
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: api
+      protocol: TCP
+      name: http
+  selector:
+    k8s-app: k8s-sample-app-web
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,6 +43,7 @@ spec:
       labels:
         k8s-app: k8s-sample-app-web
     spec:
+      serviceAccountName: k8s-sample-app-web
       imagePullSecrets:
       - name: dockerhub-credentials
       initContainers:
@@ -48,28 +73,36 @@ spec:
       containers:
         - name: k8s-sample-app-web
           image: rperry2174/ruby_rails_docker:{{GIT_TAG}}
-          args: ["bundle", "exec", "rails", "s"]
-          resources:
-            requests:
-              cpu: 200m
-              memory: 200Mi
+          args: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+          # resources:
+          #   requests:
+          #     cpu: 200m
+          #     memory: 200Mi
           env:
             - name: ABALONE_DATABASE_HOSTNAME
               value: postgresql-web
-          # ports:
-          #   - containerPort: 3000
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 3000
-          #   initialDelaySeconds: 5
-          #   timeoutSeconds: 1
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 3000
-          #   initialDelaySeconds: 5
-          #   timeoutSeconds: 1
+          ports:
+            - name: api
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            timeoutSeconds: 30
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 30
+            successThreshold: 1
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
           # envFrom: *envfrom1
       # containers:
       #   - name: k8s-sample-app-web

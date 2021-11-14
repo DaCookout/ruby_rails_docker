@@ -95,5 +95,10 @@ jobs:
         uses: thollander/actions-comment-pull-request@v1
         
         with:
-          message: 'Congrats on the PR! View your staging app at https://588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com/ and go to https://pyroscope-server.588c0bb4-177a-4791-af15-0ff856600671.k8s.civo.com/ to see performance profiles for your application'
+          template: 
+          message: |
+            ### Congrats on the PR 🎉!
+            * Review your staging app on [Civo](https://k8s-sample-app-web.3531cd4b-f81c-4135-9de8-c6c88f59b97e.k8s.civo.com) 
+            * View a diff of this apps performance and test performance using [Pyroscope](https://pyroscope-server.3531cd4b-f81c-4135-9de8-c6c88f59b97e.k8s.civo.com/)'
+            
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
