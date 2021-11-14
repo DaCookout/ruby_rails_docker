@@ -30,8 +30,11 @@ jobs:
       - name: Update GIT_AUTHOR environment variable 
         run: 'sed -i "s/{{GIT_AUTHOR}}/${{ github.actor }}/g" "./Dockerfile"'
 
-      - name: Echo manifest file for debugging
+      - name: Echo webserver manifest file for debugging
         run: 'cat "kubernetes_manifests/deploy/02-deployment-web.yaml"'
+      
+      - name: Echo tests manifest file for debugging
+        run: 'cat "kubernetes_manifests/deploy/03-tests.yaml"'
 
       - name: Echo Dockerfile for debugging
         run: 'cat "./Dockerfile"'
