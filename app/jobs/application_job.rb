@@ -8,7 +8,7 @@ class ApplicationJob < ActiveJob::Base
   # rubocop:disable Style/ExplicitBlockArgument
   def add_pyroscope
     tags = {
-      "job_class": self.class.name,
+      "job_class": self.class.name
     }
 
     Pyroscope.tag_wrapper(tags) do

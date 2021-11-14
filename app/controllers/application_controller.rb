@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   def add_pyroscope
     tags = {
       "controller": controller_name,
-      "action": action_name,
+      "action": action_name
     }
 
     Pyroscope.tag_wrapper(tags) do
