@@ -1,6 +1,6 @@
 # Abalone Analytics
 
-Test for pr...
+Creating a PR for baseline performance...
 
 ![rspec](https://github.com/rubyforgood/abalone/workflows/rspec/badge.svg) ![rubocop](https://github.com/rubyforgood/abalone/workflows/rubocop/badge.svg)
 
