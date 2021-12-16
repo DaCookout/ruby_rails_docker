@@ -5,7 +5,7 @@
     "@rails/webpacker": "5.4.3",
     "autoprefixer": "^10.3.7",
     "stimulus": "^2.0.0",
-    "tailwindcss": "^1.9.6"
+    "tailwindcss": "^3.0.6"
   },
   "devDependencies": {
     "webpack-dev-server": "3.11.2"
